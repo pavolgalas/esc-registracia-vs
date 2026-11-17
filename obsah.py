@@ -8,7 +8,7 @@ UVOD = (
 )
 
 V_SKRATKE = """
-- Registruje sa **vysoká škola sama**, aj keď bude preukazy vyrábať dodávateľ.
+- Registruje sa **vysoká škola sama**, aj keď bude ESC za ňu vydávať dodávateľ preukazov.
 - Registráciu robí **oprávnený zástupca**. Nemusí to byť štatutár.
 - Potrebujete **PIC kód** školy a osobný účet **EU Login** alebo **MyAcademicID**.
 - Registráciu overuje helpdesk ESC. Ďalších používateľov a dodávateľa pridáte až po aktivácii účtu.
@@ -152,7 +152,7 @@ SPOSOBY = {
 
 PO_REGISTRACII_VLASTNA = """
 1. **Pridajte technického administrátora.** Len on môže vygenerovať API token.
-2. **Vyberte spôsob vydávania.** API sa odporúča stredným a veľkým školám, import CSV menším školám,
+2. **Vyberte spôsob vydávania ESC.** API sa odporúča stredným a veľkým školám, import CSV menším školám,
    webové rozhranie slúži najmä na testovanie.
 3. **Vyskúšajte si postup v testovacom prostredí** (sandbox). Nenahrávajte doň skutočné osobné údaje.
 4. **Pripravte identifikátory.** Každému študentovi prideľte ESI (európsky identifikátor študenta) a každej karte ESCN (číslo karty).
