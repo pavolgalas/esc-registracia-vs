@@ -1,34 +1,34 @@
-skola_id,nazov,typ,pic,erasmus_kod
-uk,Univerzita Komenského v Bratislave,verejná,999841566,SK BRATISL02
-upjs,Univerzita Pavla Jozefa Šafárika v Košiciach,verejná,999885992,SK KOSICE02
-pu,Prešovská univerzita v Prešove,verejná,997908647,SK PRESOV01
-ucm,Univerzita sv. Cyrila a Metoda v Trnave,verejná,999868241,SK TRNAVA02
-uvlf,Univerzita veterinárskeho lekárstva a farmácie v Košiciach,verejná,998571545,SK KOSICE01
-ukf,Univerzita Konštantína Filozofa v Nitre,verejná,997731913,SK NITRA01
-umb,Univerzita Mateja Bela v Banskej Bystrici,verejná,998462517,SK BANSKA01
-truni,Trnavská univerzita v Trnave,verejná,994330026,SK TRNAVA01
-stu,Slovenská technická univerzita v Bratislave,verejná,999868823,SK BRATISL01
-tuke,Technická univerzita v Košiciach,verejná,999839238,SK KOSICE03
-uniza,Žilinská univerzita v Žiline,verejná,999969606,SK ZILINA01
-tnuni,Trenčianska univerzita Alexandra Dubčeka v Trenčíne,verejná,967384396,SK TRENCIN01
-euba,Ekonomická univerzita v Bratislave,verejná,997951618,SK BRATISL03
-spu,Slovenská poľnohospodárska univerzita v Nitre,verejná,999873382,SK NITRA02
-tuzvo,Technická univerzita vo Zvolene,verejná,998208280,SK ZVOLEN01
-vsmu,Vysoká škola múzických umení v Bratislave,verejná,949678210,SK BRATISL05
-vsvu,Vysoká škola výtvarných umení v Bratislave,verejná,953907119,SK BRATISL04
-aku,Akadémia umení v Banskej Bystrici,verejná,949584217,SK BANSKA02
-ku,Katolícka univerzita v Ružomberku,verejná,997181826,SK RUZOMBE01
-ujs,Univerzita J. Selyeho,verejná,968774406,SK KOMARNO01
-aos,Akadémia ozbrojených síl generála Milana Rastislava Štefánika,štátna,987484057,SK LIPTOV01
-apz,Akadémia Policajného zboru,štátna,961366322,SK BRATISL06
-szu,Slovenská zdravotnícka univerzita v Bratislave,štátna,999859802,SK BRATISL11
-bisla,Bratislavská medzinárodná škola liberálnych štúdií,súkromná,946897511,SK BRATISL12
-huaja,"Hudobná a umelecká akadémia Jána Albrechta - Banská Štiavnica, s. r. o., odborná vysoká škola",súkromná,946870642,SK BANSK-S01
-pevs,Paneurópska vysoká škola,súkromná,949587709,SK BRATISL08
-vsbm,Vysoká škola bezpečnostného manažérstva v Košiciach,súkromná,895681705,SK KOSICE05
-danubius,Vysoká škola Danubius,súkromná,,
-dti,Vysoká škola DTI,súkromná,939339368,SK DUBNICA01
-vsem,Vysoká škola ekonómie a manažmentu v Bratislave,súkromná,948896390,SK BRATISL13
-vsm,Vysoká škola manažmentu,súkromná,997875085,SK TRENCIN02
-vstepo,Vysoká škola technická a ekonomická v Prešove s. r. o.,súkromná,943551690,SK PRESOV02
-vssa,"Vysoká škola zdravotníctva a sociálnej práce sv. Alžbety v Bratislave, n. o.",súkromná,,
+skola_id,nazov,typ,pic,erasmus_kod,predosla_reg
+uk,Univerzita Komenského v Bratislave,verejná,999841566,SK BRATISL02,
+upjs,Univerzita Pavla Jozefa Šafárika v Košiciach,verejná,999885992,SK KOSICE02,
+pu,Prešovská univerzita v Prešove,verejná,997908647,SK PRESOV01,
+ucm,Univerzita sv. Cyrila a Metoda v Trnave,verejná,999868241,SK TRNAVA02,
+uvlf,Univerzita veterinárskeho lekárstva a farmácie v Košiciach,verejná,998571545,SK KOSICE01,
+ukf,Univerzita Konštantína Filozofa v Nitre,verejná,997731913,SK NITRA01,
+umb,Univerzita Mateja Bela v Banskej Bystrici,verejná,998462517,SK BANSKA01,"Matej Bel University, Faculty of Economics"
+truni,Trnavská univerzita v Trnave,verejná,994330026,SK TRNAVA01,
+stu,Slovenská technická univerzita v Bratislave,verejná,999868823,SK BRATISL01,
+tuke,Technická univerzita v Košiciach,verejná,999839238,SK KOSICE03,
+uniza,Žilinská univerzita v Žiline,verejná,999969606,SK ZILINA01,Žilinská univerzita v Žiline
+tnuni,Trenčianska univerzita Alexandra Dubčeka v Trenčíne,verejná,967384396,SK TRENCIN01,
+euba,Ekonomická univerzita v Bratislave,verejná,997951618,SK BRATISL03,
+spu,Slovenská poľnohospodárska univerzita v Nitre,verejná,999873382,SK NITRA02,
+tuzvo,Technická univerzita vo Zvolene,verejná,998208280,SK ZVOLEN01,Technical University in Zvolen
+vsmu,Vysoká škola múzických umení v Bratislave,verejná,949678210,SK BRATISL05,
+vsvu,Vysoká škola výtvarných umení v Bratislave,verejná,953907119,SK BRATISL04,
+aku,Akadémia umení v Banskej Bystrici,verejná,949584217,SK BANSKA02,
+ku,Katolícka univerzita v Ružomberku,verejná,997181826,SK RUZOMBE01,Catholic University in Ruzomberok
+ujs,Univerzita J. Selyeho,verejná,968774406,SK KOMARNO01,
+aos,Akadémia ozbrojených síl generála Milana Rastislava Štefánika,štátna,987484057,SK LIPTOV01,
+apz,Akadémia Policajného zboru,štátna,961366322,SK BRATISL06,
+szu,Slovenská zdravotnícka univerzita v Bratislave,štátna,999859802,SK BRATISL11,
+bisla,Bratislavská medzinárodná škola liberálnych štúdií,súkromná,946897511,SK BRATISL12,
+huaja,"Hudobná a umelecká akadémia Jána Albrechta - Banská Štiavnica, s. r. o., odborná vysoká škola",súkromná,946870642,SK BANSK-S01,
+pevs,Paneurópska vysoká škola,súkromná,949587709,SK BRATISL08,
+vsbm,Vysoká škola bezpečnostného manažérstva v Košiciach,súkromná,895681705,SK KOSICE05,
+danubius,Vysoká škola Danubius,súkromná,,,
+dti,Vysoká škola DTI,súkromná,939339368,SK DUBNICA01,
+vsem,Vysoká škola ekonómie a manažmentu v Bratislave,súkromná,948896390,SK BRATISL13,
+vsm,Vysoká škola manažmentu,súkromná,997875085,SK TRENCIN02,
+vstepo,Vysoká škola technická a ekonomická v Prešove s. r. o.,súkromná,943551690,SK PRESOV02,
+vssa,"Vysoká škola zdravotníctva a sociálnej práce sv. Alžbety v Bratislave, n. o.",súkromná,,,

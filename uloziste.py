@@ -13,8 +13,8 @@ import pandas as pd
 
 SKOLY = "skoly"
 STAV = "stav"
-SKOLY_COLS = ["skola_id", "nazov", "typ", "pic", "erasmus_kod", "kod"]
-STAV_COLS = ["skola_id", "k1", "k2", "k3", "k4", "k5", "k6", "sposob", "poznamka", "aktualizovane"]
+SKOLY_COLS = ["skola_id", "nazov", "typ", "pic", "erasmus_kod", "predosla_reg", "kod"]
+STAV_COLS = ["skola_id", "k1", "k2", "k3", "k4", "k5", "k6", "sposob", "poznamka", "aktualizovane", "preverenie"]
 
 
 def _frame(rows: list[list[str]], header: list[str], cols: list[str]) -> pd.DataFrame:
@@ -45,8 +45,14 @@ class SheetsStore:
             ws = self.sh.worksheet(tab)
         except self._gspread.WorksheetNotFound:
             ws = self.sh.add_worksheet(title=tab, rows=200, cols=len(cols))
-        if not ws.row_values(1):
-            ws.update(range_name="A1", values=[cols], value_input_option="RAW")
+        header = ws.row_values(1)
+        chybajuce = [c for c in cols if c not in header]
+        if chybajuce:
+            # Nové stĺpce z novšej verzie appky sa pridajú na koniec hlavičky.
+            nova = header + chybajuce
+            if ws.col_count < len(nova):
+                ws.add_cols(len(nova) - ws.col_count)
+            ws.update(range_name="A1", values=[nova], value_input_option="RAW")
         return ws
 
     def read(self, tab: str, cols: list[str]) -> pd.DataFrame:

@@ -75,7 +75,7 @@ def prvy_import():
 
 
 def doplnenie_kodov():
-    """Doplní chýbajúce PIC a Erasmus kódy zo skoly.csv do hárku `skoly`.
+    """Doplní chýbajúce PIC, Erasmus kódy a údaj o predošlej registrácii zo skoly.csv do hárku `skoly`.
 
     Prepisuje len prázdne bunky, takže úpravy urobené priamo v tabuľke ostanú zachované.
     Názov školy nemení – ten sa spravuje v tabuľke podľa registra VŠ.
@@ -83,7 +83,7 @@ def doplnenie_kodov():
     skoly = nacitaj_skoly()
     seed = pd.read_csv(ROOT / "skoly.csv", dtype=str, keep_default_na=False).set_index("skola_id")
     zmena = False
-    for col in ("pic", "erasmus_kod"):
+    for col in ("pic", "erasmus_kod", "predosla_reg"):
         for i, sid in skoly["skola_id"].items():
             if not skoly.at[i, col] and sid in seed.index and seed.at[sid, col]:
                 skoly.at[i, col] = seed.at[sid, col]
@@ -219,6 +219,20 @@ def prihlasenie_spravcu():
 
 # ---------- pohľad školy ----------
 
+def zobraz_predoslu_registraciu(skola, stav: dict):
+    vysledok = stav["preverenie"]
+    if vysledok == "mame_pristup":
+        st.success(obsah.PREDOSLA_REG_VYRIESENA)
+        return
+    with st.container(border=True):
+        st.markdown(f"#### {obsah.PREDOSLA_REG_NADPIS}")
+        st.markdown(obsah.PREDOSLA_REG_TEXT.format(nazov=skola["predosla_reg"]))
+        if skola["skola_id"] in obsah.PREDOSLA_REG_DOPLNOK:
+            st.markdown(obsah.PREDOSLA_REG_DOPLNOK[skola["skola_id"]])
+        st.markdown(obsah.PREDOSLA_REG_POSTUP)
+        st.caption("Výsledok preverenia zaznačte nižšie vo formulári a uložte.")
+
+
 def pohlad_skoly(skola_id: str):
     skoly = nacitaj_skoly()
     hit = skoly[skoly["skola_id"] == skola_id]
@@ -229,6 +243,8 @@ def pohlad_skoly(skola_id: str):
     stav = stav_skoly(skola_id)
 
     st.subheader(skola["nazov"])
+    if skola["predosla_reg"]:
+        zobraz_predoslu_registraciu(skola, stav)
     if skola["pic"]:
         st.markdown(f"**PIC:** `{skola['pic']}` · **Erasmus kód:** `{skola['erasmus_kod']}`")
         st.caption("PIC uvediete v registračnom formulári ESC Routra (krok 3). Údaje pochádzajú zo zoznamu držiteľov ECHE.")
@@ -250,6 +266,13 @@ def pohlad_skoly(skola_id: str):
             if stav[k["id"]]:
                 popis += f" (hotové {sk_datum(stav[k['id']])})"
             volby[k["id"]] = st.checkbox(popis, value=bool(stav[k["id"]]), key=f"cb_{k['id']}")
+        preverenie = stav["preverenie"]
+        if skola["predosla_reg"]:
+            moznosti = list(obsah.PREVERENIE)
+            preverenie = st.radio(
+                "Výsledok preverenia predošlej registrácie", options=moznosti, format_func=obsah.PREVERENIE.get,
+                index=moznosti.index(stav["preverenie"]) if stav["preverenie"] in moznosti else 0,
+            )
         sposoby = list(obsah.SPOSOBY)
         sposob = st.radio(
             "Ako bude škola preukazy vydávať?", options=sposoby, format_func=obsah.SPOSOBY.get,
@@ -263,7 +286,7 @@ def pohlad_skoly(skola_id: str):
         ulozit = st.form_submit_button("Uložiť stav", type="primary")
 
     if ulozit:
-        novy = {"skola_id": skola_id, "sposob": sposob, "poznamka": bezpecny_text(poznamka), "aktualizovane": teraz()}
+        novy = {"skola_id": skola_id, "sposob": sposob, "preverenie": preverenie, "poznamka": bezpecny_text(poznamka), "aktualizovane": teraz()}
         for kid in KROK_IDS:
             novy[kid] = (stav[kid] or dnes()) if volby[kid] else ""
         try:
@@ -285,10 +308,13 @@ def pohlad_skoly(skola_id: str):
 # ---------- pohľad správcu ----------
 
 def prehlad() -> pd.DataFrame:
-    df = nacitaj_skoly()[["skola_id", "nazov", "typ", "pic", "erasmus_kod"]].merge(nacitaj_stav(), on="skola_id", how="left").fillna("")
+    df = nacitaj_skoly()[["skola_id", "nazov", "typ", "pic", "erasmus_kod", "predosla_reg"]].merge(nacitaj_stav(), on="skola_id", how="left").fillna("")
     df["hotove_kroky"] = df[KROK_IDS].apply(lambda r: sum(bool(v) for v in r), axis=1)
     df["aktualny_krok"] = df.apply(aktualny_krok, axis=1)
     df["sposob"] = df["sposob"].map(obsah.SPOSOBY).fillna("")
+    df["preverenie"] = df.apply(
+        lambda r: obsah.PREVERENIE.get(r["preverenie"], "") if r["predosla_reg"] else "", axis=1
+    )
     return df
 
 
@@ -314,7 +340,7 @@ def pohlad_spravcu():
 
     f1, f2 = st.columns(2)
     typy = f1.multiselect("Typ školy", sorted(t for t in df["typ"].unique() if t))
-    faza = f2.selectbox("Stav", ["Všetky", "Nezačali", "Rozpracované", "Dokončené", "S poznámkou"])
+    faza = f2.selectbox("Stav", ["Všetky", "Nezačali", "Rozpracované", "Dokončené", "S poznámkou", "S predošlou registráciou"])
     v = df.copy()
     if typy:
         v = v[v["typ"].isin(typy)]
@@ -326,10 +352,12 @@ def pohlad_spravcu():
         v = v[v["hotove_kroky"] == len(KROK_IDS)]
     elif faza == "S poznámkou":
         v = v[v["poznamka"] != ""]
+    elif faza == "S predošlou registráciou":
+        v = v[v["predosla_reg"] != ""]
 
-    tabulka = v[["nazov", "typ", "pic", "erasmus_kod", "hotove_kroky", "aktualny_krok", "sposob", "aktualizovane", "poznamka"] + KROK_IDS]
+    tabulka = v[["nazov", "typ", "pic", "erasmus_kod", "predosla_reg", "preverenie", "hotove_kroky", "aktualny_krok", "sposob", "aktualizovane", "poznamka"] + KROK_IDS]
     tabulka = tabulka.rename(columns={
-        "nazov": "Škola", "typ": "Typ", "pic": "PIC", "erasmus_kod": "Erasmus kód", "hotove_kroky": "Hotové kroky", "aktualny_krok": "Aktuálny krok",
+        "nazov": "Škola", "typ": "Typ", "pic": "PIC", "erasmus_kod": "Erasmus kód", "predosla_reg": "Predošlá registrácia v Routri", "preverenie": "Preverenie", "hotove_kroky": "Hotové kroky", "aktualny_krok": "Aktuálny krok",
         "sposob": "Spôsob vydávania", "aktualizovane": "Aktualizované", "poznamka": "Poznámka",
         **{k["id"]: f"{i}. {k['nazov']}" for i, k in enumerate(obsah.KROKY, start=1)},
     })

@@ -40,6 +40,17 @@ a 10 súkromných. **Zahraničné vysoké školy pôsobiace na Slovensku v ňom 
 | `typ` | verejná / štátna / súkromná | Portál VŠ |
 | `pic` | PIC kód školy | zoznam držiteľov ECHE (EK, 24. 9. 2026) |
 | `erasmus_kod` | Erasmus kód, napr. `SK BRATISL02` | zoznam držiteľov ECHE (EK, 24. 9. 2026) |
+| `predosla_reg` | Názov organizácie, pod ktorým už škola je v ESC Routri. Prázdne = žiadna známa registrácia. | tím ESC (EK) |
+
+### Školy s predošlou registráciou
+
+Ak má škola vyplnený stĺpec `predosla_reg`, po prihlásení vidí ako prvé upozornenie, že účet v ESC Routri
+už pravdepodobne má, a postup: interne preveriť, kto účet spravuje, a ak sa to nepodarí, obrátiť sa na národnú
+agentúru namiesto zakladania nového účtu. Výsledok preverenia zaznačí vo formulári, v prehľade je v stĺpci
+*Preverenie*. Keď škola zaznačí, že k účtu má prístup, upozornenie sa jej zmení na krátke potvrdenie.
+
+Aktuálne: Katolícka univerzita v Ružomberku, UMB (registrovaná Ekonomická fakulta), Technická univerzita vo Zvolene,
+Žilinská univerzita v Žiline. Ďalšiu školu označíte vyplnením bunky `predosla_reg` v hárku `skoly`.
 
 Názov sa vždy berie z registra VŠ, nie zo zoznamu ECHE. V zozname ECHE majú niektoré školy starý názov
 (napr. DTI, VŠEM, VŠTE v Prešove), PIC a Erasmus kód sa však nemenia.
@@ -50,7 +61,7 @@ Na čo si dať pozor:
 - **VŠ bezpečnostného manažérstva v Košiciach** má v zozname ECHE dva záznamy: `SK KOSICE04` (n. o., PIC 997863154)
   a novší `SK KOSICE05` (s. r. o., PIC 895681705). Použitý je novší – overte to so školou.
 
-Po prvom spustení sa zoznam skopíruje do hárku `skoly` a ďalej sa spravuje tam. Ak v hárku chýba PIC alebo Erasmus kód
+Po prvom spustení sa zoznam skopíruje do hárku `skoly` a ďalej sa spravuje tam. Ak v hárku chýba PIC, Erasmus kód alebo údaj o predošlej registrácii
 a v `skoly.csv` je vyplnený, appka ho pri spustení doplní. Vyplnené bunky ani názvy škôl neprepisuje.
 
 ## 3. Google Sheets
