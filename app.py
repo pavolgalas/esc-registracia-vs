@@ -155,9 +155,9 @@ def zobraz_navod(stav: dict | None = None):
             with st.expander("Podrobnosti"):
                 st.markdown(k["detail"])
     with karty[1]:
-        st.subheader("Vydávame vo vlastnej réžii")
+        st.subheader("ESC vydáva škola sama")
         st.markdown(obsah.PO_REGISTRACII_VLASTNA)
-        st.subheader("Cez dodávateľa preukazov")
+        st.subheader("ESC vydáva dodávateľ v mene školy")
         st.markdown(obsah.PO_REGISTRACII_DODAVATEL)
         with st.expander("Čo musí byť na preukaze a čo sa posiela do Routra"):
             st.markdown(obsah.NA_PREUKAZE)
@@ -275,9 +275,10 @@ def pohlad_skoly(skola_id: str):
             )
         sposoby = list(obsah.SPOSOBY)
         sposob = st.radio(
-            "Ako bude škola preukazy vydávať?", options=sposoby, format_func=obsah.SPOSOBY.get,
+            "Kto bude za školu vydávať ESC?", options=sposoby, format_func=obsah.SPOSOBY.get,
             index=sposoby.index(stav["sposob"]) if stav["sposob"] in sposoby else 0, horizontal=True,
         )
+        st.caption(obsah.SPOSOB_POMOC)
         poznamka = st.text_area(
             "Poznámka alebo otázka pre národnú agentúru (nepovinné)",
             value=stav["poznamka"].lstrip("'"), max_chars=MAX_POZNAMKA,
@@ -358,7 +359,7 @@ def pohlad_spravcu():
     tabulka = v[["nazov", "typ", "pic", "erasmus_kod", "predosla_reg", "preverenie", "hotove_kroky", "aktualny_krok", "sposob", "aktualizovane", "poznamka"] + KROK_IDS]
     tabulka = tabulka.rename(columns={
         "nazov": "Škola", "typ": "Typ", "pic": "PIC", "erasmus_kod": "Erasmus kód", "predosla_reg": "Predošlá registrácia v Routri", "preverenie": "Preverenie", "hotove_kroky": "Hotové kroky", "aktualny_krok": "Aktuálny krok",
-        "sposob": "Spôsob vydávania", "aktualizovane": "Aktualizované", "poznamka": "Poznámka",
+        "sposob": "Kto vydáva ESC", "aktualizovane": "Aktualizované", "poznamka": "Poznámka",
         **{k["id"]: f"{i}. {k['nazov']}" for i, k in enumerate(obsah.KROKY, start=1)},
     })
     st.dataframe(tabulka, hide_index=True, width="stretch")

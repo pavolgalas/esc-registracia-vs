@@ -89,7 +89,7 @@ Tento krok odškrtnite až po doručení potvrdenia.
         "text": "Po aktivácii pridajte kolegov, najmä technického administrátora, aby prístup nezávisel od jednej osoby.",
         "detail": """
 Len používateľ s rolou technického administrátora môže vygenerovať API token.
-Ďalší postup závisí od toho, kto bude preukazy vydávať – pozrite si kartu „Po registrácii“.
+Ďalší postup závisí od toho, kto bude za školu vydávať ESC – pozrite si kartu „Po registrácii“.
 """,
     },
 ]
@@ -138,10 +138,16 @@ PREDOSLA_REG_VYRIESENA = (
     "Pokračujte krokmi, ktoré ešte nemáte hotové."
 )
 
+SPOSOB_POMOC = (
+    "Ide len o vydávanie ESC: zápis kariet do ESC Routra a doplnenie ESC loga s QR kódom na preukaz. "
+    "Nezáleží na tom, kto preukazy fyzicky vyrába. Ak to za školu bude robiť dodávateľ, "
+    "musí mať v ESC Routri vlastný účet a škola ho musí pridať vo svojom účte."
+)
+
 SPOSOBY = {
     "": "Zatiaľ nerozhodnuté",
-    "vlastna": "Vo vlastnej réžii",
-    "dodavatel": "Cez dodávateľa preukazov",
+    "vlastna": "Škola sama",
+    "dodavatel": "Dodávateľ v mene školy",
 }
 
 PO_REGISTRACII_VLASTNA = """
