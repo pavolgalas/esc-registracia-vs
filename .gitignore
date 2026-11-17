@@ -1,0 +1,6 @@
+# Tajné údaje a lokálne dáta nikdy nepatria do repozitára
+.streamlit/secrets.toml
+data/
+*.json
+__pycache__/
+.venv/
