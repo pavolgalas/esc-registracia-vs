@@ -83,8 +83,14 @@ Podľa vzoru `.streamlit/secrets.toml.example` pripravte tri veci:
 - `sheet_id` – ID tabuľky,
 - `[gcp_service_account]` – hodnoty z JSON kľúča.
 
-Lokálne ich uložte do `.streamlit/secrets.toml`. Tento súbor ani JSON kľúč **nikdy nenahrávajte na GitHub**
-(`.gitignore` ich vynecháva).
+Najjednoduchšie je spustiť pomocný skript, ktorý súbor vytvorí z JSON kľúča a spýta sa na adresu tabuľky a heslo:
+
+```
+python nastroje/vytvor_secrets.py cesta/ku/klucu.json
+```
+
+Výsledok je v `.streamlit/secrets.toml`. Jeho celý obsah potom vložíte do Streamlit Cloudu (časť 5).
+Tento súbor ani JSON kľúč **nikdy nenahrávajte na GitHub** (`.gitignore` ich vynecháva).
 
 ## 5. Nasadenie na Streamlit Community Cloud
 
