@@ -1,16 +1,18 @@
 """Texty návodu. Úpravy obsahu robte tu – logika appky je v app.py."""
 
-AKTUALIZOVANE = "16. 11. 2026"
+AKTUALIZOVANE = "19. 11. 2026"
 
 UVOD = (
-    "Registrácia do ESC Routra je prvý krok k tomu, aby vaša vysoká škola mohla vydávať "
-    "preukazy študenta s prvkami európskeho študentského preukazu (European Student Card, ESC)."
+    "V nadväznosti na vyhlášku č. 205/2026 Z. z. majú slovenské vysoké školy od 1. 9. 2027 vydávať "
+    "preukazy študenta s prvkami európskeho študentského preukazu (European Student Card, ESC). "
+    "Prvým predpokladom vydávania ESC je registrácia vysokej školy do ESC Routra, "
+    "platformy Európskej komisie na vydávanie a overovanie ESC."
 )
 
 V_SKRATKE = """
 - Registruje sa **vysoká škola sama**, aj keď bude ESC za ňu vydávať dodávateľ preukazov.
-- Registráciu robí **oprávnený zástupca**. Nemusí to byť štatutár.
-- Potrebujete **PIC kód** školy a osobný účet **EU Login** alebo **MyAcademicID**.
+- Registráciu robí **oprávnený zástupca** – zamestnanec, ktorého škola poverí konať v jej mene. Nemusí to byť štatutár.
+- Potrebujete **PIC kód** školy a osobný účet **EU Login** alebo **MyAcademicID**. Pôvodný účet školy v systémoch Európskej komisie netreba.
 - Registráciu overuje helpdesk ESC. Ďalších používateľov a dodávateľa pridáte až po aktivácii účtu.
 """
 
@@ -19,14 +21,14 @@ KROKY = [
     {
         "id": "k1",
         "nazov": "Určte oprávneného zástupcu",
-        "text": "Vyberte osobu, ktorá môže oficiálne konať v mene školy a prijať právne dokumenty k ESC Routru.",
+        "text": "Určte zamestnanca, ktorý bude v oblasti ESC konať v mene školy a prijme za ňu právne dokumenty k ESC Routru.",
         "detail": """
-**Nemusí to byť štatutár.** Podmienky ESC hovoria o „zákonnom alebo oprávnenom zástupcovi“ a spôsob
-určenia nechávajú na pravidlá každej školy. Môže to byť rektor alebo ním poverená osoba, napr. prorektor,
-kvestor, vedúci zahraničného oddelenia alebo CIT.
+**Nemusí to byť štatutár.** Môže to byť ktorýkoľvek zamestnanec, ktorého škola podľa svojich pravidiel
+poverí konať v tejto oblasti v jej mene, napr. prorektor, kvestor, vedúci zahraničného oddelenia alebo CIT.
+Podmienky ESC hovoria o „zákonnom alebo oprávnenom zástupcovi“ a spôsob určenia nechávajú na pravidlá každej školy.
 
-Registrujúca osoba musí mať oprávnenie školu zaviazať. Prevádzkovateľ Routra si ho môže overiť,
-preto odporúčame mať poverenie písomne.
+Ak poverenie nevyplýva priamo z interných predpisov školy, odporúčame ho mať písomne (stačí e-mailom),
+pretože prevádzkovateľ Routra si môže oprávnenie overiť.
 
 Pri prvej registrácii prijíma právne dokumenty len tento jeden používateľ. Ďalších kolegov pridá až po aktivácii účtu.
 """,
@@ -34,20 +36,20 @@ Pri prvej registrácii prijíma právne dokumenty len tento jeden používateľ.
     {
         "id": "k2",
         "nazov": "Prihláste sa do ESC Routra",
-        "text": "Oprávnený zástupca sa prihlási na [router.europeanstudentcard.eu](https://router.europeanstudentcard.eu/) cez EU Login alebo MyAcademicID.",
+        "text": "Oprávnený zástupca sa prihlási na [router.europeanstudentcard.eu](https://router.europeanstudentcard.eu/) cez EU Login alebo MyAcademicID. Ak nemá ani jeden z týchto účtov, klikne pri EU Login na „Create an account“ a účet si najprv vytvorí.",
         "detail": """
-- **Nemusí ísť o účet, ktorým bola škola pôvodne registrovaná v systémoch Európskej komisie.**
-  Stačí osobný účet oprávneného zástupcu. Ak ho nemá, vytvorí si nový.
+- **Nie je potrebné použiť účet, ktorým bola škola pôvodne registrovaná v systémoch Európskej komisie**
+  (EU Funding & Tenders Portal, EWP a pod.). Stačí osobný účet oprávneného zástupcu. Ak ho nemá, vytvorí si ho počas registrácie.
 - **EU Login** je prihlasovacia služba Európskej komisie. Účet je viazaný na osobu a jej e-mail, nie na školu.
 - **MyAcademicID** umožňuje prihlásiť sa účtom vašej školy, ak je škola zapojená do federácie eduGAIN.
-- V registračnom formulári uveďte **ten istý e-mail**, aký má účet, ktorým sa prihlasujete.
-  Použite pracovný e-mail na doméne školy.
+- Použite pracovný e-mail na doméne školy. V registračnom formulári ESC Routra uveďte **ten istý e-mail**,
+  aký má účet EU Login alebo MyAcademicID, ktorým sa prihlasujete.
 """,
     },
     {
         "id": "k3",
         "nazov": "Vyplňte registračný formulár",
-        "text": "Formulárom žiadate o prístup školy do ESC Routra.",
+        "text": "Po prihlásení oprávnený zástupca vyplní registračný formulár ESC Routra, ktorým žiada o prístup školy.",
         "detail": """
 | Údaj | Čo uviesť |
 |---|---|
@@ -64,7 +66,7 @@ Po prihlásení do tejto appky vidíte PIC svojej školy hore pod jej názvom.
     {
         "id": "k4",
         "nazov": "Prijmite právne dokumenty",
-        "text": "Oprávnený zástupca si prečíta a prijme tri dokumenty.",
+        "text": "Oprávnený zástupca si prečíta a v mene školy prijme tri dokumenty. Pri prvej registrácii ich prijíma len tento jeden používateľ.",
         "detail": """
 - **Terms & Conditions** – pravidlá používania Routra a vydávania ESC.
 - **Privacy Statement** – aké osobné údaje sa v Routri spracúvajú a aké práva majú dotknuté osoby.
@@ -79,14 +81,14 @@ Ak ich škola neprijme do troch mesiacov od registrácie, účet môže zaniknú
         "nazov": "Účet školy je aktívny",
         "text": "Helpdesk ESC skontroloval údaje, nastavil škole stav „Active“ a oprávnený zástupca dostal potvrdzujúci e-mail.",
         "detail": """
-Helpdesk si môže vyžiadať doplnenie údajov. Sledujte e-mail uvedený vo formulári vrátane priečinka so spamom.
+Helpdesk si môže vyžiadať doplnenie alebo potvrdenie údajov. Sledujte e-mail uvedený vo formulári vrátane priečinka so spamom.
 Tento krok odškrtnite až po doručení potvrdenia.
 """,
     },
     {
         "id": "k6",
         "nazov": "Pridajte ďalších používateľov",
-        "text": "Po aktivácii pridajte kolegov, najmä technického administrátora, aby prístup nezávisel od jednej osoby.",
+        "text": "Po aktivácii pridajte v ESC Routri ďalších používateľov, najmä technického administrátora, aby prístup nezávisel od jednej osoby.",
         "detail": """
 Len používateľ s rolou technického administrátora môže vygenerovať API token.
 Ďalší postup závisí od toho, kto bude za školu vydávať ESC – pozrite si kartu „Po registrácii“.
