@@ -18,6 +18,15 @@ V_SKRATKE = """
 - Registráciu overuje helpdesk ESC. Ďalších používateľov a dodávateľa pridáte až po aktivácii účtu.
 """
 
+# Oficiálny videonávod EK. Variant youtube-nocookie.com nenastavuje súbory cookies pred spustením videa.
+VIDEO_URL = "https://www.youtube-nocookie.com/embed/l7iecGtKQQc?rel=0&hl=sk&cc_load_policy=1&cc_lang_pref=sk"
+VIDEO_ODKAZ = "https://youtu.be/l7iecGtKQQc"
+VIDEO_POPIS = (
+    "Oficiálny videonávod Európskej komisie k registrácii a práci v ESC Routri (v angličtine). "
+    "Titulky v iných jazykoch vrátane slovenčiny sú strojovo generované, pojmy v nich preto nemusia byť presné. "
+    "Aktuálne rozhranie ESC Routra sa môže od videa mierne líšiť."
+)
+
 # id kroku = názov stĺpca v hárku `stav`
 KROKY = [
     {
@@ -207,6 +216,7 @@ v ESC Routri a odpovie na otázky.
 ODKAZY = [
     ("Smernica MŠVVaM SR č. 48/2026 o preukaze študenta (RAR)", "https://www.minedu.sk/data/att/76f/37500.ecbbb2.rar", "Použitie, štruktúra údajov a technické vyhotovenie preukazu študenta vrátane povinných prvkov ESC. Súbor je komprimovaný archív RAR."),
     ("ESC Router", "https://router.europeanstudentcard.eu/", "Prihlásenie a registrácia školy."),
+    ("Videonávod k ESC Routru (YouTube)", "https://youtu.be/l7iecGtKQQc", "Oficiálny návod Európskej komisie v angličtine, od registrácie po prácu s kartami. Rozhranie sa môže od videa mierne líšiť."),
     ("Ako začať s ESC", "https://erasmus-plus.ec.europa.eu/european-student-card-initiative/card/get-started", "Oficiálny postup registrácie a videonávod (v angličtine)."),
     ("Podmienky používania ESC", "https://erasmus-plus.ec.europa.eu/european-student-card-initiative/card/how-to-join/terms-conditions", "Kto môže školu registrovať a aké má povinnosti."),
     ("Všeobecné špecifikácie ESC (PDF)", "https://ec.europa.eu/assets/eac/erasmus-plus/student-card/esc-general-specs-05122025.pdf", "Čo je ESC, registrácia, vydávanie a správa kariet."),

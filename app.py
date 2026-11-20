@@ -151,10 +151,20 @@ def aktualny_krok(row) -> str:
 
 # ---------- návod ----------
 
+def zobraz_video():
+    if hasattr(st, "iframe"):  # Streamlit 1.67+
+        st.iframe(obsah.VIDEO_URL, height=400)
+    else:  # staršie verzie
+        import streamlit.components.v1 as components
+        components.iframe(obsah.VIDEO_URL, height=400)
+
+
 def zobraz_navod(stav: dict | None = None):
     karty = st.tabs(["Postup registrácie", "Po registrácii", "Dokumenty a webinár", "Časté otázky"])
     with karty[0]:
         st.markdown(obsah.V_SKRATKE)
+        zobraz_video()
+        st.caption(obsah.VIDEO_POPIS)
         for i, k in enumerate(obsah.KROKY, start=1):
             hotovo = bool(stav and stav.get(k["id"]))
             znacka = "✅ " if hotovo else ""
