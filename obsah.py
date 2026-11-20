@@ -159,7 +159,10 @@ Po aktivácii účtu sa škola rozhodne, či bude ESC vydávať sama, alebo tým
 preukazov. Ide len o zápis kariet do ESC Routra a doplnenie ESC loga s QR kódom, nie o to, kto preukazy fyzicky
 vyrába. Ak bude škola ESC vydávať sama, má na výber viacero spôsobov.
 
-K týmto krokom pripravujeme podrobnejšie informácie **začiatkom roka 2027**. Prehľad nižšie je orientačný.
+Podrobnejšie informácie k týmto krokom pripravujeme na **začiatok roka 2027**, prehľad nižšie je preto stručný.
+Prípravu na vydávanie ESC podľa smernice č. 48/2026 si každá škola nastavuje podľa svojich podmienok, preto
+odporúčame začať so samoštúdiom dokumentácie ESC už teraz. Kľúčové dokumenty nájdete na vedľajšej karte
+„Dokumenty a webinár“. My vás budeme priebežne informovať a s otázkami vám radi pomôžeme.
 """
 
 PO_REGISTRACII_VLASTNA = """
