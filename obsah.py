@@ -192,6 +192,7 @@ v ESC Routri a odpovie na otázky.
 """
 
 ODKAZY = [
+    ("Smernica MŠVVaM SR č. 48/2026 o preukaze študenta (RAR)", "https://www.minedu.sk/data/att/76f/37500.ecbbb2.rar", "Použitie, štruktúra údajov a technické vyhotovenie preukazu študenta vrátane povinných prvkov ESC. Súbor je komprimovaný archív RAR."),
     ("ESC Router", "https://router.europeanstudentcard.eu/", "Prihlásenie a registrácia školy."),
     ("Ako začať s ESC", "https://erasmus-plus.ec.europa.eu/european-student-card-initiative/card/get-started", "Oficiálny postup registrácie a videonávod (v angličtine)."),
     ("Podmienky používania ESC", "https://erasmus-plus.ec.europa.eu/european-student-card-initiative/card/how-to-join/terms-conditions", "Kto môže školu registrovať a aké má povinnosti."),
