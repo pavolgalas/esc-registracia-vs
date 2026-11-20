@@ -193,12 +193,9 @@ def _karta_otazky():
             st.write(odpoved)
 
 
-def zobraz_navod(s_postupom: bool = True):
-    """Návod v kartách. Prihlásená škola má postup priamo vo formulári, preto bez prvej karty."""
-    karty = [("Po registrácii", _karta_po_registracii), ("Dokumenty a webinár", _karta_dokumenty),
-             ("Časté otázky", _karta_otazky)]
-    if s_postupom:
-        karty.insert(0, ("Postup registrácie", _karta_postup))
+def zobraz_navod():
+    karty = [("Postup registrácie", _karta_postup), ("Po registrácii", _karta_po_registracii),
+             ("Dokumenty a webinár", _karta_dokumenty), ("Časté otázky", _karta_otazky)]
     for tab, (_, fn) in zip(st.tabs([n for n, _ in karty]), karty):
         with tab:
             fn()
@@ -295,11 +292,23 @@ def pohlad_skoly(skola_id: str):
     if stav["aktualizovane"]:
         st.caption(f"Stav naposledy uložený {stav['aktualizovane']}.")
 
+    karty = st.tabs(["Postup a stav registrácie", "Po registrácii", "Dokumenty a webinár", "Časté otázky"])
+    with karty[0]:
+        formular_stavu(skola, skola_id, stav, dalsi)
+    with karty[1]:
+        _karta_po_registracii()
+    with karty[2]:
+        _karta_dokumenty()
+    with karty[3]:
+        _karta_otazky()
+    st.caption(f"Návod aktualizovaný {obsah.AKTUALIZOVANE}. {obsah.KONTAKT}")
+
+
+def formular_stavu(skola, skola_id: str, stav: dict, dalsi: dict | None):
     with st.expander("Videonávod k ESC Routru"):
         zobraz_video()
         st.caption(obsah.VIDEO_POPIS)
 
-    st.subheader("Postup a stav registrácie")
     st.markdown(obsah.FORMULAR_UVOD)
 
     with st.form("stav_form"):
@@ -352,9 +361,6 @@ def pohlad_skoly(skola_id: str):
         st.success("Stav je uložený. Ďakujeme.")
         st.toast("Stav je uložený.")
 
-    st.divider()
-    st.subheader("Ďalšie informácie")
-    zobraz_navod(s_postupom=False)
 
 
 # ---------- pohľad správcu ----------
@@ -449,7 +455,26 @@ def pohlad_spravcu():
 
 # ---------- hlavná stránka ----------
 
+KARTY_CSS = """
+<style>
+/* Výraznejšie karty návodu (funguje pre novšie aj staršie verzie Streamlitu). */
+.stTabs [role="tablist"] { gap: .4rem; flex-wrap: wrap; border-bottom: 2px solid rgba(29,79,145,.35); }
+.stTabs [role="tab"] {
+  height: auto; padding: .6rem 1.05rem; border-radius: .5rem .5rem 0 0;
+  background: rgba(29,79,145,.09); cursor: pointer;
+}
+.stTabs [role="tab"]:hover { background: rgba(29,79,145,.16); }
+.stTabs [role="tab"] p { font-size: 1.02rem; font-weight: 600; }
+.stTabs [role="tab"][aria-selected="true"] { background: #1d4f91; }
+.stTabs [role="tab"][aria-selected="true"] p { color: #ffffff; }
+.stTabs .react-aria-SelectionIndicator,
+.stTabs [data-baseweb="tab-highlight"], .stTabs [data-baseweb="tab-border"] { display: none; }
+</style>
+"""
+
+
 def main():
+    st.markdown(KARTY_CSS, unsafe_allow_html=True)
     st.title("Registrácia vysokej školy do ESC Routra")
     if DEMO:
         st.warning("Skúšobný režim: Google Sheets nie je nastavený, údaje sa ukladajú len lokálne. Heslo správcu je „demo“.")
