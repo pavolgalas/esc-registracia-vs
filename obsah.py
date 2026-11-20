@@ -211,7 +211,7 @@ ODKAZY = [
 ]
 
 OTAZKY = [
-    ("Je ESC nový preukaz?", "Nie. Ide o váš súčasný preukaz študenta doplnený o spoločné európske prvky, či už ide o čipovú kartu, alebo virtuálnu kartu v mobile. Technické vyhotovenie preukazu na Slovensku upravuje smernica č. 48/2026."),
+    ("Je ESC ďalší, samostatný preukaz popri preukaze študenta?", "Nie. Študent bude mať aj naďalej jeden preukaz študenta, či už čipovú kartu, alebo virtuálnu kartu v mobile. Prvky ESC (logo s QR kódom) sa stanú jeho súčasťou a karta sa zaregistruje v ESC Routri. Formálne pôjde o nové preukazy, pretože budú vydané podľa smernice č. 48/2026, ktorá upravuje aj ich technické vyhotovenie. Samostatnú „európsku“ kartu však škola nevydáva."),
     ("Musí registráciu urobiť rektor osobne?", "Nie. Stačí osoba, ktorú škola podľa svojich pravidiel poverí konať v jej mene. Poverenie odporúčame mať písomne."),
     ("Potrebujeme účet, ktorým bola škola registrovaná v systémoch Európskej komisie?", "Nie. Stačí osobný účet EU Login alebo MyAcademicID oprávneného zástupcu. Ak ho nemá, vytvorí si nový."),
     ("Môže registráciu za školu urobiť dodávateľ preukazov?", "Nie. Škola sa registruje sama a právne dokumenty prijíma jej oprávnený zástupca. Dodávateľa škola pridá až po aktivácii svojho účtu."),
