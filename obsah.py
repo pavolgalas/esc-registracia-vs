@@ -132,7 +132,7 @@ PREDOSLA_REG_POSTUP = """
 2. **Ak účet nájdete a máte k nemu prístup,** skontrolujte zoznam používateľov a oprávneného zástupcu.
    Ak sa zmenil, aktualizujte ho. Kroky 1 až 5 potom môžete odškrtnúť a pokračujete krokom 6.
 3. **Ak účet existuje, ale nikto z vás k nemu nemá prístup,** alebo ste interne nič nezistili,
-   **nezakladajte zatiaľ nový účet.** Napíšte národnej agentúre. V spolupráci s tímom ESC
+   **nezakladajte zatiaľ nový účet.** Napíšte národnej agentúre na pavol.galas@saaic.sk. V spolupráci s tímom ESC
    zistíme, komu je účet pridelený, a ako ho prevziať. Novú registráciu odporúčame začať,
    až keď sa potvrdí, že pôvodný účet už neexistuje.
 """
@@ -217,8 +217,8 @@ OTAZKY = [
     ("Môže registráciu za školu urobiť dodávateľ preukazov?", "Nie. Škola sa registruje sama a právne dokumenty prijíma jej oprávnený zástupca. Dodávateľa škola pridá až po aktivácii svojho účtu."),
     ("Kto prideľuje ESI?", "Škola. Odporúčame používať rovnaký identifikátor ako v Erasmus Without Paper a pri prihlasovaní cez MyAcademicID."),
     ("Ako sa ESC overuje?", "Naskenovaním QR kódu bežným smartfónom. Zobrazí sa stránka Routra s informáciou, či je karta platná."),
-    ("Čo ak už naša škola v ESC Routri účet má?", "Nezakladajte nový. Preverte interne, kto účet spravuje (zahraničné oddelenie, CIT, pracovisko preukazov). Ak to nezistíte, obráťte sa na národnú agentúru – pomôžeme vám v spolupráci s tímom ESC účet prevziať."),
+    ("Čo ak už naša škola v ESC Routri účet má?", "Nezakladajte nový. Preverte interne, kto účet spravuje (zahraničné oddelenie, CIT, pracovisko preukazov). Ak to nezistíte, obráťte sa na národnú agentúru (pavol.galas@saaic.sk) – pomôžeme vám v spolupráci s tímom ESC účet prevziať."),
     ("Čo ak sa účet dlho nepoužíva?", "Účet, ku ktorému nebola 12 mesiacov priradená žiadna karta, sa odstráni. Registráciu načasujte tak, aby na ňu nadviazalo vydávanie preukazov."),
 ]
 
-KONTAKT = "Národná agentúra SAAIC, Digital Contact Point pre program Erasmus+."
+KONTAKT = "Kontakt: pavol.galas@saaic.sk · národná agentúra SAAIC, Digital Contact Point pre program Erasmus+."
