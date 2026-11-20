@@ -154,6 +154,14 @@ SPOSOBY = {
     "dodavatel": "Dodávateľ v mene školy",
 }
 
+PO_REGISTRACII_UVOD = """
+Po aktivácii účtu sa škola rozhodne, či bude ESC vydávať sama, alebo tým poverí tretiu stranu, napr. dodávateľa
+preukazov. Ide len o zápis kariet do ESC Routra a doplnenie ESC loga s QR kódom, nie o to, kto preukazy fyzicky
+vyrába. Ak bude škola ESC vydávať sama, má na výber viacero spôsobov.
+
+K týmto krokom pripravujeme podrobnejšie informácie **začiatkom roka 2027**. Prehľad nižšie je orientačný.
+"""
+
 PO_REGISTRACII_VLASTNA = """
 1. **Pridajte technického administrátora.** Len on môže vygenerovať API token.
 2. **Vyberte spôsob vydávania ESC.** API sa odporúča stredným a veľkým školám, import CSV menším školám,

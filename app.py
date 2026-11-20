@@ -155,6 +155,7 @@ def zobraz_navod(stav: dict | None = None):
             with st.expander("Podrobnosti"):
                 st.markdown(k["detail"])
     with karty[1]:
+        st.info(obsah.PO_REGISTRACII_UVOD)
         st.subheader("ESC vydáva škola sama")
         st.markdown(obsah.PO_REGISTRACII_VLASTNA)
         st.subheader("ESC vydáva dodávateľ v mene školy")
