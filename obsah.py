@@ -1,10 +1,12 @@
 """Texty návodu. Úpravy obsahu robte tu – logika appky je v app.py."""
 
-AKTUALIZOVANE = "19. 11. 2026"
+AKTUALIZOVANE = "20. 11. 2026"
 
 UVOD = (
-    "V nadväznosti na vyhlášku č. 205/2026 Z. z. majú slovenské vysoké školy od 1. 9. 2027 vydávať "
-    "preukazy študenta s prvkami európskeho študentského preukazu (European Student Card, ESC). "
+    "V nadväznosti na smernicu Ministerstva školstva, výskumu, vývoja a mládeže SR č. 48/2026 "
+    "o použití, štruktúre údajov a technickom vyhotovení preukazu študenta majú slovenské vysoké školy "
+    "od 1. 9. 2027 vydávať preukazy študenta s povinnými prvkami európskeho študentského preukazu "
+    "(European Student Card, ESC), a to pre študentov vo všetkých formách a stupňoch štúdia. "
     "Prvým predpokladom vydávania ESC je registrácia vysokej školy do ESC Routra, "
     "platformy Európskej komisie na vydávanie a overovanie ESC."
 )
@@ -173,6 +175,8 @@ Registráciu školy dodávateľ urobiť nemôže. Kroky 1 až 5 registrácie mus
 
 NA_PREUKAZE = """
 **Na preukaze:** ESC logo, ktoré tvorí QR kód, vlajka EÚ a text „European Student Card“.
+Podľa smernice č. 48/2026 sa logo a QR kód ESC uvádzajú na prednej strane čipovej karty alebo na prvej strane
+virtuálnej karty a ich umiestnenie musí spĺňať pravidlá Európskej komisie.
 QR kód má mať aspoň 15 × 15 mm. Proporcie loga sa nesmú meniť.
 
 **Do Routra:** ESI, ESCN, PIC školy, meno a e-mail držiteľa, dátum platnosti karty, stupeň štúdia a typ karty.
@@ -198,7 +202,7 @@ ODKAZY = [
 ]
 
 OTAZKY = [
-    ("Je ESC nový preukaz?", "Nie. Ide o váš súčasný preukaz študenta doplnený o spoločné európske prvky. Môže byť plastový aj digitálny a nezáleží na použitej technológii."),
+    ("Je ESC nový preukaz?", "Nie. Ide o váš súčasný preukaz študenta doplnený o spoločné európske prvky, či už ide o čipovú kartu, alebo virtuálnu kartu v mobile. Technické vyhotovenie preukazu na Slovensku upravuje smernica č. 48/2026."),
     ("Musí registráciu urobiť rektor osobne?", "Nie. Stačí osoba, ktorú škola podľa svojich pravidiel poverí konať v jej mene. Poverenie odporúčame mať písomne."),
     ("Potrebujeme účet, ktorým bola škola registrovaná v systémoch Európskej komisie?", "Nie. Stačí osobný účet EU Login alebo MyAcademicID oprávneného zástupcu. Ak ho nemá, vytvorí si nový."),
     ("Môže registráciu za školu urobiť dodávateľ preukazov?", "Nie. Škola sa registruje sama a právne dokumenty prijíma jej oprávnený zástupca. Dodávateľa škola pridá až po aktivácii svojho účtu."),
