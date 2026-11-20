@@ -6,6 +6,7 @@ Bez nastavených secrets beží appka v skúšobnom režime (údaje v priečinku
 from __future__ import annotations
 
 import hmac
+import importlib
 import io
 import secrets as pysecrets
 from datetime import datetime
@@ -16,7 +17,13 @@ import pandas as pd
 import streamlit as st
 
 import obsah
-from uloziste import SKOLY, SKOLY_COLS, STAV, STAV_COLS, LocalStore, SheetsStore
+import uloziste
+
+# Streamlit Cloud po aktualizácii z GitHubu spustí nový app.py, ale pomocné moduly
+# môže mať v pamäti zo staršej verzie. Obnovíme ich pri každom spustení skriptu.
+importlib.reload(obsah)
+importlib.reload(uloziste)
+from uloziste import SKOLY, SKOLY_COLS, STAV, STAV_COLS, LocalStore, SheetsStore  # noqa: E402
 
 ROOT = Path(__file__).parent
 TZ = ZoneInfo("Europe/Bratislava")
@@ -45,7 +52,7 @@ def get_store():
     return LocalStore(ROOT / "data")
 
 
-DEMO = isinstance(get_store(), LocalStore)
+DEMO = type(get_store()).__name__ == LocalStore.__name__  # po reloade modulu nefunguje isinstance
 ADMIN_HESLO = secret("admin_heslo") or ("demo" if DEMO else None)
 
 
