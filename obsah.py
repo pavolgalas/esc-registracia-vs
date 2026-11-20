@@ -160,9 +160,11 @@ preukazov. Ide len o zápis kariet do ESC Routra a doplnenie ESC loga s QR kódo
 vyrába. Ak bude škola ESC vydávať sama, má na výber viacero spôsobov.
 
 Podrobnejšie informácie k týmto krokom pripravujeme na **začiatok roka 2027**, prehľad nižšie je preto stručný.
-Prípravu na vydávanie ESC podľa smernice č. 48/2026 si každá škola nastavuje podľa svojich podmienok, preto
-odporúčame začať so samoštúdiom dokumentácie ESC už teraz. Kľúčové dokumenty nájdete na vedľajšej karte
-„Dokumenty a webinár“. My vás budeme priebežne informovať a s otázkami vám radi pomôžeme.
+Vhodný spôsob vydávania ESC závisí od podmienok každej školy, napríklad od jej informačného systému,
+spôsobu výroby preukazov či spolupráce s dodávateľom. Odporúčame preto už teraz preštudovať dokumentáciu ESC
+a podľa vlastných podmienok si zvoliť postup, ktorým splníte požiadavky smernice č. 48/2026. Všetka dokumentácia
+je verejne dostupná, kľúčové dokumenty nájdete na vedľajšej karte „Dokumenty a webinár“. My vás budeme priebežne
+informovať a s otázkami vám radi pomôžeme.
 """
 
 PO_REGISTRACII_VLASTNA = """
