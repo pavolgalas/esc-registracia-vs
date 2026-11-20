@@ -108,6 +108,10 @@ Tento súbor ani JSON kľúč **nikdy nenahrávajte na GitHub** (`.gitignore` ic
 
 ## 7. Bežná prevádzka
 
+- **Testovacia škola:** pridajte do hárku `skoly` riadok s typom `test` (napr. `saaic`, `SAAIC – test`, `test`).
+  Do súhrnných čísel a grafu sa nezapočítava, v tabuľke prehľadu ostáva. PIC s nulami na začiatku zapíšte
+  s apostrofom (`'000000000`), inak ho Google Sheets zmení na číslo 0.
+
 - **Nová škola:** pridajte riadok do hárku `skoly` a v appke vygenerujte chýbajúci kód.
 - **Zmena kódu:** prepíšte alebo vymažte bunku `kod` v hárku `skoly` (po vymazaní vygenerujte nový).
 - **Oprava stavu školy:** upravte riadok v hárku `stav`. Stĺpce `k1` až `k6` obsahujú dátum splnenia kroku

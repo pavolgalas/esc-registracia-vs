@@ -345,15 +345,19 @@ def pohlad_spravcu():
         st.rerun()
 
     df = prehlad()
-    n = len(df)
+    # Školy s typom „test“ sa do súhrnov nezapočítavajú, v tabuľke ostávajú.
+    ostre = df[df["typ"].str.strip().str.lower() != "test"]
+    n = len(ostre)
     c1, c2, c3, c4 = st.columns(4)
     c1.metric("Školy spolu", n)
-    c2.metric("Začali", int((df["hotove_kroky"] > 0).sum()))
-    c3.metric("Účet aktívny", int((df["k5"] != "").sum()))
-    c4.metric("Dokončené", int((df["hotove_kroky"] == len(KROK_IDS)).sum()))
+    c2.metric("Začali", int((ostre["hotove_kroky"] > 0).sum()))
+    c3.metric("Účet aktívny", int((ostre["k5"] != "").sum()))
+    c4.metric("Dokončené", int((ostre["hotove_kroky"] == len(KROK_IDS)).sum()))
+    if len(ostre) < len(df):
+        st.caption(f"Bez testovacích škôl (typ „test“): {len(df) - len(ostre)}.")
 
     st.markdown("**Počet škôl podľa počtu hotových krokov**")
-    rozdelenie = df["hotove_kroky"].value_counts().reindex(range(len(KROK_IDS) + 1), fill_value=0)
+    rozdelenie = ostre["hotove_kroky"].value_counts().reindex(range(len(KROK_IDS) + 1), fill_value=0)
     rozdelenie.index = [f"{i} krok" if i == 1 else f"{i} kroky" if i in (2, 3, 4) else f"{i} krokov" for i in rozdelenie.index]
     st.bar_chart(rozdelenie, x_label="Hotové kroky", y_label="Počet škôl")
 
