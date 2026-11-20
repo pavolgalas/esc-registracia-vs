@@ -27,6 +27,12 @@ VIDEO_POPIS = (
     "Aktuálne rozhranie ESC Routra sa môže od videa mierne líšiť."
 )
 
+FORMULAR_UVOD = (
+    "Pri každom kroku nájdete stručný postup a v časti Podrobnosti viac informácií. "
+    "Keď máte krok hotový, odškrtnite ho a na konci kliknite na **Uložiť stav**. "
+    "Ďalší krok, ktorý vás čaká, je rozbalený."
+)
+
 # id kroku = názov stĺpca v hárku `stav`
 KROKY = [
     {

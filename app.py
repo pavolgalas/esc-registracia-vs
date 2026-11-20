@@ -159,36 +159,49 @@ def zobraz_video():
         components.iframe(obsah.VIDEO_URL, height=400)
 
 
-def zobraz_navod(stav: dict | None = None):
-    karty = st.tabs(["Postup registrácie", "Po registrácii", "Dokumenty a webinár", "Časté otázky"])
-    with karty[0]:
-        st.markdown(obsah.V_SKRATKE)
-        zobraz_video()
-        st.caption(obsah.VIDEO_POPIS)
-        for i, k in enumerate(obsah.KROKY, start=1):
-            hotovo = bool(stav and stav.get(k["id"]))
-            znacka = "✅ " if hotovo else ""
-            st.markdown(f"**{znacka}{i}. {k['nazov']}**  \n{k['text']}")
-            with st.expander("Podrobnosti"):
-                st.markdown(k["detail"])
-    with karty[1]:
-        st.info(obsah.PO_REGISTRACII_UVOD)
-        st.subheader("ESC vydáva škola sama")
-        st.markdown(obsah.PO_REGISTRACII_VLASTNA)
-        st.subheader("ESC vydáva dodávateľ v mene školy")
-        st.markdown(obsah.PO_REGISTRACII_DODAVATEL)
-        with st.expander("Čo musí byť na preukaze a čo sa posiela do Routra"):
-            st.markdown(obsah.NA_PREUKAZE)
-    with karty[2]:
-        st.subheader("Webinár Európskej komisie")
-        st.markdown(obsah.WEBINAR)
-        st.subheader("Dokumenty a odkazy")
-        for nazov, url, popis in obsah.ODKAZY:
-            st.markdown(f"[{nazov}]({url})  \n{popis}")
-    with karty[3]:
-        for otazka, odpoved in obsah.OTAZKY:
-            with st.expander(otazka):
-                st.write(odpoved)
+def _karta_postup():
+    st.markdown(obsah.V_SKRATKE)
+    zobraz_video()
+    st.caption(obsah.VIDEO_POPIS)
+    for i, k in enumerate(obsah.KROKY, start=1):
+        st.markdown(f"**{i}. {k['nazov']}**  \n{k['text']}")
+        with st.expander("Podrobnosti"):
+            st.markdown(k["detail"])
+
+
+def _karta_po_registracii():
+    st.info(obsah.PO_REGISTRACII_UVOD)
+    st.subheader("ESC vydáva škola sama")
+    st.markdown(obsah.PO_REGISTRACII_VLASTNA)
+    st.subheader("ESC vydáva dodávateľ v mene školy")
+    st.markdown(obsah.PO_REGISTRACII_DODAVATEL)
+    with st.expander("Čo musí byť na preukaze a čo sa posiela do Routra"):
+        st.markdown(obsah.NA_PREUKAZE)
+
+
+def _karta_dokumenty():
+    st.subheader("Webinár Európskej komisie")
+    st.markdown(obsah.WEBINAR)
+    st.subheader("Dokumenty a odkazy")
+    for nazov, url, popis in obsah.ODKAZY:
+        st.markdown(f"[{nazov}]({url})  \n{popis}")
+
+
+def _karta_otazky():
+    for otazka, odpoved in obsah.OTAZKY:
+        with st.expander(otazka):
+            st.write(odpoved)
+
+
+def zobraz_navod(s_postupom: bool = True):
+    """Návod v kartách. Prihlásená škola má postup priamo vo formulári, preto bez prvej karty."""
+    karty = [("Po registrácii", _karta_po_registracii), ("Dokumenty a webinár", _karta_dokumenty),
+             ("Časté otázky", _karta_otazky)]
+    if s_postupom:
+        karty.insert(0, ("Postup registrácie", _karta_postup))
+    for tab, (_, fn) in zip(st.tabs([n for n, _ in karty]), karty):
+        with tab:
+            fn()
     st.caption(f"Návod aktualizovaný {obsah.AKTUALIZOVANE}. {obsah.KONTAKT}")
 
 
@@ -248,7 +261,7 @@ def zobraz_predoslu_registraciu(skola, stav: dict):
         if skola["skola_id"] in obsah.PREDOSLA_REG_DOPLNOK:
             st.markdown(obsah.PREDOSLA_REG_DOPLNOK[skola["skola_id"]])
         st.markdown(obsah.PREDOSLA_REG_POSTUP)
-        st.caption("Výsledok preverenia zaznačte nižšie vo formulári a uložte.")
+        st.caption("Výsledok preverenia zaznačte nižšie na začiatku postupu a uložte.")
 
 
 def pohlad_skoly(skola_id: str):
@@ -275,18 +288,21 @@ def pohlad_skoly(skola_id: str):
             "PIC nájdete v portáli EU Funding & Tenders, prípadne ho zistíte na zahraničnom oddelení."
         )
     hotove = sum(bool(stav[k]) for k in KROK_IDS)
-    st.progress(hotove / len(KROK_IDS), text=f"{hotove} zo {len(KROK_IDS)} krokov hotových")
+    dalsi = next((k for k in obsah.KROKY if not stav[k["id"]]), None)
+    popis_stavu = f"Stav registrácie: {hotove} zo {len(KROK_IDS)} krokov"
+    popis_stavu += f" · ďalší krok: {dalsi['nazov']}" if dalsi else " · registrácia je dokončená"
+    st.progress(hotove / len(KROK_IDS), text=popis_stavu)
     if stav["aktualizovane"]:
         st.caption(f"Stav naposledy uložený {stav['aktualizovane']}.")
 
+    with st.expander("Videonávod k ESC Routru"):
+        zobraz_video()
+        st.caption(obsah.VIDEO_POPIS)
+
+    st.subheader("Postup a stav registrácie")
+    st.markdown(obsah.FORMULAR_UVOD)
+
     with st.form("stav_form"):
-        st.markdown("**Odškrtnite kroky, ktoré má vaša škola hotové, a uložte.**")
-        volby = {}
-        for i, k in enumerate(obsah.KROKY, start=1):
-            popis = f"{i}. {k['nazov']}"
-            if stav[k["id"]]:
-                popis += f" (hotové {sk_datum(stav[k['id']])})"
-            volby[k["id"]] = st.checkbox(popis, value=bool(stav[k["id"]]), key=f"cb_{k['id']}")
         preverenie = stav["preverenie"]
         if skola["predosla_reg"]:
             moznosti = list(obsah.PREVERENIE)
@@ -294,6 +310,19 @@ def pohlad_skoly(skola_id: str):
                 "Výsledok preverenia predošlej registrácie", options=moznosti, format_func=obsah.PREVERENIE.get,
                 index=moznosti.index(stav["preverenie"]) if stav["preverenie"] in moznosti else 0,
             )
+
+        volby = {}
+        for i, k in enumerate(obsah.KROKY, start=1):
+            with st.container(border=True):
+                popis = f"**{i}. {k['nazov']}**"
+                if stav[k["id"]]:
+                    popis += f" · hotové {sk_datum(stav[k['id']])}"
+                volby[k["id"]] = st.checkbox(popis, value=bool(stav[k["id"]]), key=f"cb_{k['id']}")
+                st.markdown(k["text"])
+                with st.expander("Podrobnosti", expanded=dalsi is not None and k["id"] == dalsi["id"]):
+                    st.markdown(k["detail"])
+
+        st.markdown("**Vydávanie ESC**")
         sposoby = list(obsah.SPOSOBY)
         sposob = st.radio(
             "Kto bude za školu vydávať ESC?", options=sposoby, format_func=obsah.SPOSOBY.get,
@@ -321,10 +350,11 @@ def pohlad_skoly(skola_id: str):
             st.rerun()
     if st.session_state.pop("ulozene", False):
         st.success("Stav je uložený. Ďakujeme.")
+        st.toast("Stav je uložený.")
 
     st.divider()
-    st.subheader("Návod")
-    zobraz_navod(stav)
+    st.subheader("Ďalšie informácie")
+    zobraz_navod(s_postupom=False)
 
 
 # ---------- pohľad správcu ----------
