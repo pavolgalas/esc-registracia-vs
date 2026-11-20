@@ -264,7 +264,10 @@ def pohlad_skoly(skola_id: str):
     if skola["predosla_reg"]:
         zobraz_predoslu_registraciu(skola, stav)
     if skola["pic"]:
-        st.markdown(f"**PIC:** `{skola['pic']}` · **Erasmus kód:** `{skola['erasmus_kod']}`")
+        riadok = f"**PIC:** `{skola['pic']}`"
+        if skola["erasmus_kod"]:
+            riadok += f" · **Erasmus kód:** `{skola['erasmus_kod']}`"
+        st.markdown(riadok)
         st.caption("PIC uvediete v registračnom formulári ESC Routra (krok 3). Údaje pochádzajú zo zoznamu držiteľov ECHE.")
     else:
         st.info(
